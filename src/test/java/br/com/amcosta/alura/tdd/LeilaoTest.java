@@ -24,8 +24,8 @@ public class LeilaoTest {
         Avaliador avaliador = new Avaliador();
         avaliador.avalia(leilao);
 
-        Assert.assertEquals(1200, avaliador.getMenorLance());
-        Assert.assertEquals(1800, avaliador.getMenorLance());
+        Assert.assertEquals(1200, avaliador.getMenorLance(), 0.0001);
+        Assert.assertEquals(1800, avaliador.getMaiorLance(), 0.0001);
     }
 
 }
