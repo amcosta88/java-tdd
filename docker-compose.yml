@@ -7,11 +7,12 @@ services:
 #      - ".:/app"
 #    working_dir: "/app"
 
-#  build:
-#    image: maven
-#    container_name: builder
-#    volumes:
-#      - ".:/usr/src/mymaven"
-#      - "./etc/maven:/root/.m2"
-#    working_dir: "/usr/src/mymaven"
-#    entrypoint: "mvn verify"
+  build:
+    image: maven
+    container_name: builder
+    volumes:
+      - ".:/usr/src/mymaven"
+      - "./etc/maven:/root/.m2"
+    working_dir: "/usr/src/mymaven"
+    entrypoint: "/bin/bash"
+    tty: true

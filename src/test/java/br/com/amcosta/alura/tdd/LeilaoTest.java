@@ -28,4 +28,21 @@ public class LeilaoTest {
         Assert.assertEquals(1800, avaliador.getMaiorLance(), 0.0001);
     }
 
+    @Test
+    public void testMedia() {
+        Usuario usuario = new Usuario(1, 'Usuário 1');
+        Lance lance1 = new Lance(usuario, 100);
+        Lance lance2 = new Lance(usuario, 1000);
+        Lance lance3 = new Lance(usuario, 1000);
+
+        Leilao leilao = new Leilao("Leilão de teste 1");
+        leilao.propoe(lance1);
+        leilao.propoe(lance2);
+        leilao.propoe(lance3);
+
+        Avaliador avaliador = new Avaliador();
+        avaliador.avalia(leilao);
+
+        Assert.assertEquals(1200, avaliador.getMediaDosLances(), 0.0001);
+    }
 }

@@ -27,5 +27,13 @@ public class Leilao {
 	}
 
 	
-	
+	public double mediaDosLances() {
+		double total = 0;
+
+		for (Lance lance : lances) {
+			total += lance.getValor();
+		}
+
+		return total / lances.size();
+	}
 }
