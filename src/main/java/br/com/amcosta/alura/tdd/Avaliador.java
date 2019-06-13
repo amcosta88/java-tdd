@@ -27,4 +27,14 @@ public class Avaliador {
     public double getMaiorLance() {
         return this.maiorLance;
     }
+
+    public double mediaDosLances(Leilao leilao) {
+        double total = 0;
+
+        for (Lance lance : leilao.getLances()) {
+            total += lance.getValor();
+        }
+
+        return total / lances.size();
+    }
 }

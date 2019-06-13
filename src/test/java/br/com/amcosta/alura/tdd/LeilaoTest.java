@@ -43,6 +43,6 @@ public class LeilaoTest {
         Avaliador avaliador = new Avaliador();
         avaliador.avalia(leilao);
 
-        Assert.assertEquals(1200, avaliador.getMediaDosLances(), 0.0001);
+        Assert.assertEquals(1200, avaliador.getMediaDosLances(leilao), 0.0001);
     }
 }
