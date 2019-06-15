@@ -1,11 +1,18 @@
 package br.com.amcosta.alura.tdd;
 
+import java.util.List;
+
 public class Avaliador {
 
+    private Leilao leilao;
     private double menorLance = Double.POSITIVE_INFINITY;
     private double maiorLance = Double.NEGATIVE_INFINITY;
 
-    public void avalia(Leilao leilao) {
+    public Avaliador(Leilao leilao) {
+        this.leilao = leilao;
+    }
+
+    public void avalia() {
         for (Lance lance : leilao.getLances()) {
             double valor = lance.getValor();
 
@@ -28,10 +35,11 @@ public class Avaliador {
         return this.maiorLance;
     }
 
-    public double mediaDosLances(Leilao leilao) {
+    public double mediaDosLances() {
         double total = 0;
+        List<Lance> lances = leilao.getLances();
 
-        for (Lance lance : leilao.getLances()) {
+        for (Lance lance : lances) {
             total += lance.getValor();
         }
 

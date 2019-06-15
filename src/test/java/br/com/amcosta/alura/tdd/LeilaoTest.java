@@ -21,8 +21,8 @@ public class LeilaoTest {
         leilao.propoe(lance2);
         leilao.propoe(lance3);
 
-        Avaliador avaliador = new Avaliador();
-        avaliador.avalia(leilao);
+        Avaliador avaliador = new Avaliador(leilao);
+        avaliador.avalia();
 
         Assert.assertEquals(1200, avaliador.getMenorLance(), 0.0001);
         Assert.assertEquals(1800, avaliador.getMaiorLance(), 0.0001);
@@ -30,8 +30,8 @@ public class LeilaoTest {
 
     @Test
     public void testMedia() {
-        Usuario usuario = new Usuario(1, 'Usuário 1');
-        Lance lance1 = new Lance(usuario, 100);
+        Usuario usuario = new Usuario(1, "Usuário 1");
+        Lance lance1 = new Lance(usuario, 1000);
         Lance lance2 = new Lance(usuario, 1000);
         Lance lance3 = new Lance(usuario, 1000);
 
@@ -40,9 +40,9 @@ public class LeilaoTest {
         leilao.propoe(lance2);
         leilao.propoe(lance3);
 
-        Avaliador avaliador = new Avaliador();
-        avaliador.avalia(leilao);
+        Avaliador avaliador = new Avaliador(leilao);
+        avaliador.avalia();
 
-        Assert.assertEquals(1200, avaliador.getMediaDosLances(leilao), 0.0001);
+        Assert.assertEquals(1000, avaliador.mediaDosLances(), 0.0001);
     }
 }
