@@ -1,5 +1,8 @@
 package br.com.amcosta.alura.tdd;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class Avaliador {
@@ -50,7 +53,7 @@ public class Avaliador {
     }
 
     private void pegaOsMaiores(Leilao leilao) {
-        maiores = new ArrayList<Lance>(leilao.getLances());
+        maiores = new ArrayList<>(leilao.getLances());
         Collections.sort(maiores, new Comparator<Lance>() {
             public int compare(Lance o1, Lance o2) {
                 if (o1.getValor() < o2.getValor()) return 1;

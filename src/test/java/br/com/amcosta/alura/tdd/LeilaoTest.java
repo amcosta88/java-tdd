@@ -85,4 +85,25 @@ public class LeilaoTest {
         Assert.assertEquals(1500, avaliador.getMaiorLance(), 0.0001);
         Assert.assertEquals(150, avaliador.getMenorLance(), 0.0001);
     }
+
+    @Test
+    public void testPegaOsTresMaioresLances() {
+        Usuario usuario = new Usuario(1, "Maria");
+        Leilao leilao = new Leilao("Leilão de ordem descrescente");
+
+        leilao.propoe(new Lance(usuario, 1500));
+        leilao.propoe(new Lance(usuario, 1300));
+        leilao.propoe(new Lance(usuario, 1000));
+        leilao.propoe(new Lance(usuario, 750));
+        leilao.propoe(new Lance(usuario, 500));
+        leilao.propoe(new Lance(usuario, 150));
+
+        Avaliador avaliador = new Avaliador(leilao);
+        avaliador.avalia();
+
+        Assert.assertEquals(3, avaliador.getTresMaiores().size());
+        Assert.assertEquals(1500, avaliador.getTresMaiores().get(0).getValor(), 0.0001);
+        Assert.assertEquals(1300, avaliador.getTresMaiores().get(1).getValor(), 0.0001);
+        Assert.assertEquals(1000, avaliador.getTresMaiores().get(2).getValor(), 0.0001);
+    }
 }
