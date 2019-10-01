@@ -15,7 +15,23 @@ public class Leilao {
 	}
 	
 	public void propoe(Lance lance) {
-		lances.add(lance);
+		if (lances.isEmpty() || !this.lances.get(this.lances.size() - 1).getUsuario().equals(lance.getUsuario())) {
+			int quantidade = this.quantificarLancesDoUsuario(lance.getUsuario());
+			if (quantidade < 5) {
+				lances.add(lance);
+			}
+		}
+	}
+
+	private int quantificarLancesDoUsuario(Usuario usuario) {
+		int quantidade = 0;
+		for (Lance lance : this.lances) {
+			if (lance.getUsuario().equals(usuario)) {
+				quantidade++;
+			}
+		}
+
+		return quantidade;
 	}
 
 	public String getDescricao() {
