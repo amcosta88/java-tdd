@@ -42,4 +42,11 @@ public class Leilao {
 		return Collections.unmodifiableList(lances);
 	}
 
+	public void dobrarLance(Usuario usuario) {
+	    if (this.lances.isEmpty()) {
+	        return void;
+        }
+
+
+    }
 }

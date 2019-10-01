@@ -147,4 +147,14 @@ public class LeilaoTest {
 
         Assert.assertEquals(10, leilao.getLances().size());
     }
+
+    @Test
+    public void testNaoDeveDobrarLanceDeUmLanceQueNaoExiste() {
+        Usuario usuario = new Usuario("Usuario 1");
+        Leilao leilao = new Leilao("Produto 1");
+
+        leilao.dobrarLance(usuario);
+
+        Assert.assertEquals(0, leilao.getLances().size());
+    }
 }
