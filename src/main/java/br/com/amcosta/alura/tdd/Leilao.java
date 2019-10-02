@@ -44,9 +44,19 @@ public class Leilao {
 
 	public void dobrarLance(Usuario usuario) {
 	    if (this.lances.isEmpty()) {
-	        return void;
+	        return;
         }
 
+		Lance ultimoLance = null;
+		for (Lance lance : this.lances) {
+			if (lance.getUsuario().equals(usuario)) {
+				ultimoLance = lance;
+			}
+		}
 
+		if (ultimoLance != null) {
+			double valorDobrado = ultimoLance.getValor() * 2;
+			this.propoe(new Lance(ultimoLance.getUsuario(), valorDobrado));
+		}
     }
 }

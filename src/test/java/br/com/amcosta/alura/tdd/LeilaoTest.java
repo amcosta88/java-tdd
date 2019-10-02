@@ -157,4 +157,20 @@ public class LeilaoTest {
 
         Assert.assertEquals(0, leilao.getLances().size());
     }
+
+    @Test
+    public void testDeveDobrarOLanceDoUltimoUsuario() {
+        Usuario usuario1 = new Usuario("Usuario 1");
+        Usuario usuario2 = new Usuario("Usuario 2");
+        Leilao leilao = new Leilao("Produto 1");
+
+        leilao.propoe(new Lance(usuario1, 100));
+        leilao.propoe(new Lance(usuario2, 150));
+        leilao.propoe(new Lance(usuario1, 170));
+        leilao.propoe(new Lance(usuario2, 200));
+        leilao.dobrarLance(usuario1);
+
+        Assert.assertEquals(5, leilao.getLances().size());
+        Assert.assertEquals(340, leilao.getLances().get(4).getValor(), 0.0001);
+    }
 }
