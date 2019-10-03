@@ -17,6 +17,10 @@ public class Avaliador {
     }
 
     public void avalia() {
+        if (this.leilao.getLances().size() == 0) {
+            throw new RuntimeException("Nâo é possível avaliar um leilão sem lances!");
+        }
+
         for (Lance lance : leilao.getLances()) {
             double valor = lance.getValor();
 

@@ -36,6 +36,12 @@ public class LeilaoTest {
         return avaliador;
     }
 
+    @Test(expected = RuntimeException.class)
+    public void testDeveLancarUmaExcecaoQuandoNaoTiverLancesParaAvaliar() {
+        Leilao leilao = new ConstrutorDeLeilao("Leilão teste").construir();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
+    }
+
     @Test
     public void testMaiorMenorPreco() {
         Leilao leilao = (new ConstrutorDeLeilao("Leilão de teste 1"))
