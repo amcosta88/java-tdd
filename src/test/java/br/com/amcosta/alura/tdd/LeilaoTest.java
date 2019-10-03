@@ -1,8 +1,6 @@
 package br.com.amcosta.alura.tdd;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.*;
 
 public class LeilaoTest {
 
@@ -10,11 +8,32 @@ public class LeilaoTest {
     private Usuario usuario2;
     private Usuario usuario3;
 
+    @BeforeClass
+    public static void testandoBeforeClass() {
+        System.out.println("before class");
+    }
+
+    @AfterClass
+    public static void testandoAfterClass() {
+        System.out.println("after class");
+    }
+
     @Before
     public void setUp() {
         this.usuario1 = new Usuario(1, "usuario 1");
         this.usuario2 = new Usuario(2, "usuario 2");
         this.usuario3 = new Usuario(3, "usuario 3");
+    }
+
+    @After
+    public void finaliza() {
+        System.out.println("fim");
+    }
+
+    private Avaliador avaliarLeilao(Leilao leilao) {
+        Avaliador avaliador = new Avaliador(leilao);
+        avaliador.avalia();
+        return avaliador;
     }
 
     @Test
@@ -28,8 +47,7 @@ public class LeilaoTest {
                 .proporLance(this.usuario3, 630)
                 .construir();
 
-        Avaliador avaliador = new Avaliador(leilao);
-        avaliador.avalia();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
 
         Assert.assertEquals(120, avaliador.getMenorLance(), 0.0001);
         Assert.assertEquals(5869, avaliador.getMaiorLance(), 0.0001);
@@ -43,8 +61,7 @@ public class LeilaoTest {
                 .proporLance(this.usuario1, 1000)
                 .construir();
 
-        Avaliador avaliador = new Avaliador(leilao);
-        avaliador.avalia();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
 
         Assert.assertEquals(1000, avaliador.mediaDosLances(), 0.0001);
     }
@@ -55,8 +72,7 @@ public class LeilaoTest {
                 .proporLance(this.usuario1, 1500)
                 .construir();
 
-        Avaliador avaliador = new Avaliador(leilao);
-        avaliador.avalia();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
 
         Assert.assertEquals(1500, avaliador.getMenorLance(), 0.0001);
         Assert.assertEquals(1500, avaliador.getMaiorLance(), 0.0001);
@@ -73,8 +89,7 @@ public class LeilaoTest {
                 .proporLance(this.usuario2, 150)
                 .construir();
 
-        Avaliador avaliador = new Avaliador(leilao);
-        avaliador.avalia();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
 
         Assert.assertEquals(1500, avaliador.getMaiorLance(), 0.0001);
         Assert.assertEquals(150, avaliador.getMenorLance(), 0.0001);
@@ -91,8 +106,7 @@ public class LeilaoTest {
                 .proporLance(this.usuario2, 150)
                 .construir();
 
-        Avaliador avaliador = new Avaliador(leilao);
-        avaliador.avalia();
+        Avaliador avaliador = this.avaliarLeilao(leilao);
 
         Assert.assertEquals(3, avaliador.getTresMaiores().size());
         Assert.assertEquals(1500, avaliador.getTresMaiores().get(0).getValor(), 0.0001);
